@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 import com.lobster.myhouse.domain.Scoring.Scoring;
 
 public class Family {
-    private Long id;
+    private String id;
     private double totalIncome;
     private List<Dependent> dependents;
     private double score;
@@ -15,7 +15,7 @@ public class Family {
         return score;
     }
 
-    private Family(Long id, double totalIncome, List<Dependent> dependents, Scoring scoring) {
+    private Family(String id, double totalIncome, List<Dependent> dependents, Scoring scoring) {
         this.id = id;
         this.totalIncome = totalIncome;
         this.dependents = dependents != null
@@ -30,11 +30,11 @@ public class Family {
         return new Family(null, totalIncome, dependents, scoring);
     }
 
-    public static Family restore(Long id, double totalIncome, List<Dependent> dependents, Scoring scoring) {
+    public static Family restore(String id, double totalIncome, List<Dependent> dependents, Scoring scoring) {
         return new Family(id, totalIncome, dependents, scoring);
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
