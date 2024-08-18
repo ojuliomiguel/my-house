@@ -12,9 +12,14 @@ import com.lobster.myhouse.domain.Scoring.Scoring;
 import com.lobster.myhouse.domain.gateway.RegisterFamiliesGateway;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.anyDouble;
+import static org.mockito.ArgumentMatchers.anyList;
+import static org.mockito.ArgumentMatchers.argThat;
+import static org.mockito.ArgumentMatchers.isNull;
 import static org.mockito.Mockito.*;
 
 class RegisterFamiliesUseCaseTest {
@@ -78,7 +83,7 @@ class RegisterFamiliesUseCaseTest {
 
     @Test
     void testExecuteWithNoDependents() {
-        RegisterFamiliesUseCaseInput input = new RegisterFamiliesUseCaseInput(2000.0, null);
+        RegisterFamiliesUseCaseInput input = new RegisterFamiliesUseCaseInput(2000.0, Collections.emptyList());
 
         when(scoring.caculate(anyDouble(), isNull())).thenReturn(5.0);
 
@@ -91,6 +96,6 @@ class RegisterFamiliesUseCaseTest {
         assertTrue(output.dependents().isEmpty());
 
         verify(registerFamiliesGateway, times(1)).execute(anyList());
-        verify(scoring, times(1)).caculate(anyDouble(), isNull());
+        verify(scoring, times(1)).caculate(anyDouble(), anyList());
     }
 }
