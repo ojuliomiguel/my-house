@@ -34,6 +34,10 @@ public class Family {
         return new Family(id, totalIncome, dependents, scoring);
     }
 
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public String getId() {
         return id;
     }
