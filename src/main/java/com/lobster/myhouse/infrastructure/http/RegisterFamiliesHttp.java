@@ -9,8 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.lobster.myhouse.application.contracts.usecase.UseCaseContract;
-import com.lobster.myhouse.application.usecases.RegisterFamiliesUseCaseInput;
-import com.lobster.myhouse.application.usecases.RegisterFamiliesUseCaseOutput;
+import com.lobster.myhouse.application.usecases.registerFamilies.*;
 
 @RestController
 @RequestMapping("/families")

@@ -1,4 +1,4 @@
-package com.lobster.myhouse.application.usecases;
+package com.lobster.myhouse.application.usecases.registerFamilies;
 
 import java.util.List;
 

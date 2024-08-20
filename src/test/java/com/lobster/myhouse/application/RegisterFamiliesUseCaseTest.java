@@ -5,9 +5,9 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import com.lobster.myhouse.application.usecases.RegisterFamiliesUseCase;
-import com.lobster.myhouse.application.usecases.RegisterFamiliesUseCaseInput;
-import com.lobster.myhouse.application.usecases.RegisterFamiliesUseCaseOutput;
+import com.lobster.myhouse.application.usecases.registerFamilies.RegisterFamiliesUseCase;
+import com.lobster.myhouse.application.usecases.registerFamilies.RegisterFamiliesUseCaseInput;
+import com.lobster.myhouse.application.usecases.registerFamilies.RegisterFamiliesUseCaseOutput;
 import com.lobster.myhouse.domain.Scoring.Scoring;
 import com.lobster.myhouse.domain.gateway.RegisterFamiliesGateway;
 
