@@ -9,34 +9,53 @@ public class MyPopularHouseScoring implements Scoring {
     private int MAX_INCOME = 1500;
     private int INCOME_UP_TO = 900;
 
+    private double HIGH_INCOME_SCORE = 5;
+    private double MEDIUM_INCOME_SCORE = 3;
+
+    private int MAX_DEPENDENT_AGE = 18;
+
     @Override
     public double caculate(double totalIncome, List<Dependent> dependents) {
-        double score = 0;
         if (this.hasIncomeOutsideOfRange(totalIncome)) {
-            return score;
+            return 0;
         }
-        if (totalIncome <= this.INCOME_UP_TO) {
-            score += 5;
-        } else if (totalIncome <= this.MAX_INCOME) {
-            score += 3;
-        }
-        long familiesUpToThreeDependents = dependents.stream()
-                .filter(dependent -> dependent.getAge() <= 18)
-                .count();
-
-        long familiesWithOneOrTwoDependents = dependents.stream()
-                .filter(dependent -> dependent.getAge() < 18)
-                .count();
-        if (familiesUpToThreeDependents >= 3) {
-            score += 3;
-        } else if (familiesWithOneOrTwoDependents > 0 && familiesWithOneOrTwoDependents <= 2) {
-            score += 2;
-        }
-        return score;
+        double score = calculateIncomeScore(totalIncome);
+        double familyBonusScore = calculateFamilyBonusScore(dependents);
+        return score + familyBonusScore;
     }
 
     private boolean hasIncomeOutsideOfRange(double totalIncome) {
-        return totalIncome > this.MAX_INCOME;
+        return totalIncome > MAX_INCOME;
+    }
+
+    private double calculateIncomeScore(double totalIncome) {
+        if (totalIncome <= INCOME_UP_TO) {
+            return HIGH_INCOME_SCORE;
+        } else if (totalIncome <= MAX_INCOME) {
+            return MEDIUM_INCOME_SCORE;
+        }
+        return 0;
+    }
+
+    private double calculateFamilyBonusScore(List<Dependent> dependents) {
+        int MIN_DEPENDENTS_FOR_MAX_BONUS = 3;
+        int MIN_DEPENDENTS_FOR_MIN_BONUS = 2;
+        int MAX_FAMILY_BONUS = 3;
+        int MIN_FAMILY_BONUS = 2;
+        int NO_FAMILY_BONUS = 0;
+        long numFamiliesWithUpToThreeDependents = dependents.stream()
+                .filter(dependent -> dependent.getAge() <= MAX_DEPENDENT_AGE)
+                .count();
+        long numFamiliesWithOneOrTwoDependents = dependents.stream()
+                .filter(dependent -> dependent.getAge() < MAX_DEPENDENT_AGE)
+                .count();
+        if (numFamiliesWithUpToThreeDependents >= MIN_DEPENDENTS_FOR_MAX_BONUS) {
+            return MAX_FAMILY_BONUS;
+        } else if (numFamiliesWithOneOrTwoDependents > 0
+                && numFamiliesWithOneOrTwoDependents <= MIN_DEPENDENTS_FOR_MIN_BONUS) {
+            return MIN_FAMILY_BONUS;
+        }
+        return NO_FAMILY_BONUS;
     }
 
 }
