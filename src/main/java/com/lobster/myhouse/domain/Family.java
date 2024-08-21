@@ -1,7 +1,6 @@
 package com.lobster.myhouse.domain;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import com.lobster.myhouse.domain.Scoring.Scoring;
 
@@ -18,11 +17,7 @@ public class Family {
     private Family(String id, double totalIncome, List<Dependent> dependents, Scoring scoring) {
         this.id = id;
         this.totalIncome = totalIncome;
-        this.dependents = dependents != null
-                ? dependents.stream()
-                        .filter(d -> d.getAge() < 18)
-                        .collect(Collectors.toList())
-                : null;
+        this.dependents = dependents;
         this.score = scoring.caculate(totalIncome, dependents);
     }
 
