@@ -29,10 +29,12 @@ public class InMemoryListFamiliesAdapter implements ListFamiliesGateway {
         List<Family> filteredList = dataBase.data.subList(fromIndex, toIndex);
         if ("score".equalsIgnoreCase(filter.getSortBy())) {
             filteredList = filteredList.stream()
-                    .sorted(Comparator.comparingDouble(Family::getScore).reversed())
+                    .sorted(Comparator
+                            .comparingDouble(Family::getScore)
+                            .thenComparing(Family::getId)
+                            .reversed())
                     .collect(Collectors.toList());
         }
         return filteredList;
     }
-
 }
