@@ -12,7 +12,7 @@
 	<artifactId>myhouse</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>myhouse</name>
-	<description>Demo project for Spring Boot</description>
+	<description>An application to you receive your home</description>
 	<url/>
 	<licenses>
 		<license/>
