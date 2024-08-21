@@ -2,6 +2,8 @@ package com.lobster.myhouse.infrastructure.IoC.adapters;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.Comparator;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -21,12 +23,16 @@ public class InMemoryListFamiliesAdapter implements ListFamiliesGateway {
     public List<Family> execute(Filter filter) {
         int fromIndex = filter.getPageNumber() * filter.getPageSize();
         int toIndex = Math.min(fromIndex + filter.getPageSize(), dataBase.data.size());
-
         if (fromIndex >= dataBase.data.size()) {
             return new ArrayList<>();
         }
-
-        return dataBase.data.subList(fromIndex, toIndex);
+        List<Family> filteredList = dataBase.data.subList(fromIndex, toIndex);
+        if ("score".equalsIgnoreCase(filter.getSortBy())) {
+            filteredList = filteredList.stream()
+                    .sorted(Comparator.comparingDouble(Family::getScore).reversed())
+                    .collect(Collectors.toList());
+        }
+        return filteredList;
     }
 
 }
