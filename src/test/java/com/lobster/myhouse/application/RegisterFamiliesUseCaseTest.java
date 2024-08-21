@@ -42,7 +42,7 @@ class RegisterFamiliesUseCaseTest {
     void testExecute() {
         RegisterFamiliesUseCaseInput.Dependent dependent1 = new RegisterFamiliesUseCaseInput.Dependent("John", 10);
         RegisterFamiliesUseCaseInput.Dependent dependent2 = new RegisterFamiliesUseCaseInput.Dependent("Jane", 15);
-        RegisterFamiliesUseCaseInput input = new RegisterFamiliesUseCaseInput(2000.0,
+        RegisterFamiliesUseCaseInput input = new RegisterFamiliesUseCaseInput(2000,
                 Arrays.asList(dependent1, dependent2));
 
         when(scoring.caculate(anyDouble(), anyList())).thenReturn(7.5);
@@ -54,7 +54,7 @@ class RegisterFamiliesUseCaseTest {
         RegisterFamiliesUseCaseOutput output = result.get(0);
 
        
-        assertEquals(2000.0, output.totalIncome());
+        assertEquals(2000, output.totalIncome());
         assertEquals(7.5, output.totalScore());
         assertEquals(2, output.dependents().size());
         assertEquals("REGISTERED", output.status());
@@ -65,9 +65,9 @@ class RegisterFamiliesUseCaseTest {
 
     @Test
     void testExecuteWithMultipleFamilies() {
-        RegisterFamiliesUseCaseInput input1 = new RegisterFamiliesUseCaseInput(2000.0,
+        RegisterFamiliesUseCaseInput input1 = new RegisterFamiliesUseCaseInput(2000,
                 Arrays.asList(new RegisterFamiliesUseCaseInput.Dependent("John", 10)));
-        RegisterFamiliesUseCaseInput input2 = new RegisterFamiliesUseCaseInput(3000.0,
+        RegisterFamiliesUseCaseInput input2 = new RegisterFamiliesUseCaseInput(3000,
                 Arrays.asList(new RegisterFamiliesUseCaseInput.Dependent("Jane", 15)));
 
         when(scoring.caculate(anyDouble(), anyList())).thenReturn(7.5).thenReturn(8.0);
@@ -83,7 +83,7 @@ class RegisterFamiliesUseCaseTest {
 
     @Test
     void testExecuteWithNoDependents() {
-        RegisterFamiliesUseCaseInput input = new RegisterFamiliesUseCaseInput(2000.0, Collections.emptyList());
+        RegisterFamiliesUseCaseInput input = new RegisterFamiliesUseCaseInput(2000, Collections.emptyList());
 
         when(scoring.caculate(anyDouble(), isNull())).thenReturn(5.0);
 

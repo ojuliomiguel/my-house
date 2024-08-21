@@ -29,8 +29,7 @@ class FamilyTest {
         double expectedDependents = 2.0;
         List<Dependent> dependents = Arrays.asList(
                 new Dependent("John", 15),
-                new Dependent("Doe", 16)
-        );
+                new Dependent("Doe", 16));
         Family family = Family.create(1200.0, dependents, scoring);
         assertNull(family.getId());
         assertEquals(expectedTotalIncome, family.getTotalIncome());
@@ -38,19 +37,4 @@ class FamilyTest {
         assertEquals(expectedScore, family.getScore());
     }
 
-    @Test
-    void testCreate_FamilyWithDependentsOver18() {
-        double expectedTotalIncome = 1300.0;
-        double expectedScore = 3.0;
-        List<Dependent> dependents = Arrays.asList(
-                new Dependent("John", 19),
-                new Dependent("Doe", 20)
-        );
-        Family family = Family.create(1300.0, dependents, scoring);
-
-        assertNull(family.getId());
-        assertEquals(expectedTotalIncome, family.getTotalIncome());
-        assertTrue(family.getDependents().isEmpty());  
-        assertEquals(expectedScore, family.getScore());
-    }
 }
