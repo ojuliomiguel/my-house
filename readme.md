@@ -3,6 +3,8 @@
 > What goes inside the hexagon?
 > - Cockburn:  I don't care.
 
+[ref](https://youtu.be/AOIWUPjal60?t=1900)
+
 <p align="center">
   <img src="ports_and_adapters_flow.jpeg" alt="Hexagonal Architecture Diagram">
 </p>
