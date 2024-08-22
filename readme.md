@@ -9,6 +9,7 @@
   <img src="ports_and_adapters_flow.jpeg" alt="Hexagonal Architecture Diagram">
 </p>
 
+> Image from [Vaughn Vernon](https://www.linkedin.com/posts/vaughnvernon_is-this-even-more-useful-based-on-a-lot-activity-7232094732233940992-StfV?utm_source=share&utm_medium=member_desktop)
 
 ### Introdução.
 
@@ -16,41 +17,9 @@ Este projeto, denominado "myhouse", foi desenvolvido utilizando a arquitetura he
 
 ### Estrutura do projeto.
 
-
-```
-myhouse
-├── application
-│   └── contracts
-│       └── usecase
-│           └── UseCaseContract.java
-├── usecases
-│   ├── listEligibleFamilies
-│   └── registerFamilies
-├── domain
-│   ├── gateway
-│   │   ├── common
-│   │   │   ├── ListFamiliesGateway.java
-│   │   │   └── RegisterFamiliesGateway.java
-│   ├── Scoring
-│   │   ├── MyPopularHouseScoring.java
-│   │   ├── Scoring.java
-│   │   ├── Dependent.java
-│   │   └── Family.java
-├── infrastructure
-│   ├── http
-│   │   ├── EligibleFamiliesDTO.java
-│   │   ├── Health.java
-│   │   ├── ListEligibleFamiliesHttp.java
-│   │   ├── RegisterFamiliesDto.java
-│   │   └── RegisterFamiliesHttp.java
-│   └── IoC
-│       ├── adapters
-│       │   ├── DataBase.java
-│       │   ├── ScoringProvider.java
-│       │   └── UseCaseProvider.java
-└── MyhouseApplication.java
-
-```
+<p align="center">
+  <img src="project_structure.jpg" alt="Hexagonal Architecture Diagram">
+</p>
 
 ### Configurações do projeto
 
