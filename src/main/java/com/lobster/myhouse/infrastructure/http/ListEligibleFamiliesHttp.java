@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.lobster.myhouse.application.contracts.usecase.UseCaseContract;
@@ -24,9 +24,10 @@ public class ListEligibleFamiliesHttp {
     }
 
     @GetMapping
-    public ResponseEntity<Object> execute(@RequestBody(required = false) EligibleFamiliesDTO request) {
-        EligibleFamiliesDTO dto = request != null ? request : EligibleFamiliesDTO.builder().build();
-        EligibleFamiliesUseCaseInput input = new EligibleFamiliesUseCaseInput(dto.getPageSize(), dto.getPageNumber());
+    public ResponseEntity<Object> execute(
+            @RequestParam(value = "pageSize", required = false, defaultValue = "10") Integer pageSize,
+            @RequestParam(value = "pageNumber", required = false, defaultValue = "0") Integer pageNumber) {
+        EligibleFamiliesUseCaseInput input = new EligibleFamiliesUseCaseInput(pageSize, pageNumber);
         var result = this.listEligibleFamiliesUseCase.execute(input);
         return ResponseEntity.ok(result);
     }
